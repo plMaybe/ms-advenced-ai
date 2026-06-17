@@ -1,7 +1,10 @@
-from typing import Any, Literal, NotRequired, TypedDict
-
+from db.schemas import QuerySelection
+import operator
+from typing import Any, Annotated, Literal, NotRequired, TypedDict
 
 from pydantic import BaseModel
+
+from db.schemas import ReportMatch, SqlQueryResult
 
 # The five intents the agent understands. Two are retrieval paths
 # (northwind_query, document_search), one is a reporting ask, and two are
@@ -37,5 +40,11 @@ class AgentState(TypedDict):
 
     question: str
     intent: NotRequired[IntentResult]
+    query_selection: NotRequired[QuerySelection]
+    sql_result: NotRequired[SqlQueryResult]
+    document_matches: NotRequired[list[ReportMatch]]
+    answer: NotRequired[str]
+    thinking: Annotated[list[str], operator.add]
+    retry_count: NotRequired[int]
 
 StateUpdate = dict[str, Any]

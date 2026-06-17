@@ -19,6 +19,18 @@ class Config(BaseSettings):
     )
 
     api_key: SecretStr = Field(validation_alias="OPEN_ROUTER_API_KEY")
+    database_url: SecretStr = Field(validation_alias="DATABASE_URL")
+    embedding_model: str = Field(
+        validation_alias="EMBEDDING_MODEL",
+    )
+    sql_max_limit: int = Field(
+        default=100,
+        validation_alias="SQL_MAX_LIMIT",
+    )
+    search_limit: int = Field(
+        default=5,
+        validation_alias="SEARCH_LIMIT",
+    )
     llm_max_retries: int = Field(
         default=2,
         validation_alias="LLM_MAX_RETRIES",

@@ -19,8 +19,22 @@ tasks:
       - google/gemma-3-12b-it
       - google/gemma-4-26b-a4b-it:free
 
+  # Intent recognition must be deterministic: temperature 0 so the same
+  # question always maps to the same intent.
   intent:
     temperature: 0.0
+    models:
+      - google/gemma-3-12b-it
+      - google/gemini-3.5-flash
+
+  sql_gen:
+    temperature: 0.0
+    models:
+      - google/gemma-3-12b-it
+      - google/gemini-3.5-flash
+
+  answer:
+    temperature: 0.2
     models:
       - google/gemma-3-12b-it
       - google/gemini-3.5-flash
